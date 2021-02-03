@@ -1,10 +1,17 @@
 import { SignUpController } from './signup'
 import { MissingParamError } from '../errors/missing-param-error'
 import { InvalidParamError   } from '../errors/missing-param-error'
+import { EmailValidator } from '../protocols/email-validator'
+import { Controller } from '../protocols/controller'
 
+
+export interface MakeSut {
+  sut: Controller,
+  emailValidatorStub: EmailValidator 
+}
 
 //factory
-const makeSut = (): any => {
+const makeSut = (): MakeSut => {
   
   class EmailValidatorStub {
     isValid (email: string): boolean{
